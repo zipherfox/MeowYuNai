@@ -752,11 +752,13 @@ tbody tr:hover {
 }
 
 .modal-close {
-    float: right;
-    font-size: 2rem;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5rem;
     cursor: pointer;
-    color: var(--text-light);
-    transition: color 0.3s ease;
+    color: white;
+    z-index: 2100;
 }
 
 .modal-close:hover {
