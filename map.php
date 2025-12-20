@@ -195,7 +195,14 @@ if (isLoggedIn()) {
             let popupContent = `
                 <div style="min-width: 250px;">
                     ${cat.photo ? `<img src="uploads/cats/${cat.photo}" class="map-popup-image" alt="${cat.cat_name}">` : ''}
-                    <h3 class="map-popup-title">${cat.cat_name}</h3>
+                    ${cat.photo ? `
+                        <img 
+                            src="uploads/cats/${cat.photo}" 
+                            class="map-popup-image clickable-image"
+                            alt="${cat.cat_name}"
+                            onclick="openImageModal(this.src)"
+                        >
+                    ` : ''}
                     <p class="map-popup-info"><strong>Breed:</strong> ${cat.breed || 'Mixed'}</p>
                     <p class="map-popup-info"><strong>Color:</strong> ${cat.color}</p>
                     <p class="map-popup-info"><strong>Lost:</strong> ${new Date(cat.lost_date).toLocaleDateString()}</p>
@@ -233,5 +240,24 @@ if (isLoggedIn()) {
             .addTo(map);
         <?php endif; ?>
     </script>
+<!-- Image Modal -->
+<div id="imageModal" class="modal" onclick="closeImageModal()">
+    <span class="modal-close" onclick="closeImageModal()">&times;</span>
+    <img id="modalImage" 
+     style="max-width:90%; max-height:90%; border-radius:20px;"
+     onclick="event.stopPropagation();">
+
+</div>
+<script>
+function openImageModal(src) {
+    document.getElementById('modalImage').src = src;
+    document.getElementById('imageModal').classList.add('active');
+}
+
+function closeImageModal() {
+    document.getElementById('imageModal').classList.remove('active');
+}
+</script>
+</script>
 </body>
 </html>
