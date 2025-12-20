@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $insertSql = "INSERT INTO lost_reports (cat_id, user_id, lost_date, lost_location, latitude, longitude, additional_info, reward, contact_phone, contact_email) 
                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($insertSql);
-            $stmt->bind_param("iissddsss", $catId, $userId, $lostDate, $lostLocation, $latitude, $longitude, $additionalInfo, $reward, $contactPhone, $contactEmail);
+            $stmt->bind_param("iissddsdss", $catId, $userId, $lostDate, $lostLocation, $latitude, $longitude, $additionalInfo, $reward, $contactPhone, $contactEmail);
             
             if ($stmt->execute()) {
                 $success = 'Lost report submitted successfully! Your cat is now visible on the map.';
