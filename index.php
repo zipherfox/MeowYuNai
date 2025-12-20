@@ -116,8 +116,9 @@ $allLostCats = getRecentLostCats(100);
                     <div style="position: relative;">
                         <?php if ($cat['photo']): ?>
                             <img src="uploads/cats/<?php echo htmlspecialchars($cat['photo']); ?>" 
-                                 alt="<?php echo htmlspecialchars($cat['cat_name']); ?>" 
-                                 class="cat-card-image">
+                                alt="<?php echo htmlspecialchars($cat['cat_name']); ?>" 
+                                class="cat-card-image clickable-image"
+                                onclick="openImageModal(this.src)">
                         <?php else: ?>
                             <div class="cat-card-image" style="background: linear-gradient(135deg, #FFE66D 0%, #FF6B35 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem;">
                                 🐱
@@ -172,9 +173,10 @@ $allLostCats = getRecentLostCats(100);
                 <div class="cat-card">
                     <div style="position: relative;">
                         <?php if ($cat['photo']): ?>
-                            <img src="uploads/cats/<?php echo htmlspecialchars($cat['photo']); ?>" 
-                                 alt="<?php echo htmlspecialchars($cat['cat_name']); ?>" 
-                                 class="cat-card-image">
+                           <img src="uploads/cats/<?php echo htmlspecialchars($cat['photo']); ?>" 
+                                alt="<?php echo htmlspecialchars($cat['cat_name']); ?>" 
+                                class="cat-card-image clickable-image"
+                                onclick="openImageModal(this.src)">
                         <?php else: ?>
                             <div class="cat-card-image" style="background: linear-gradient(135deg, #4ECDC4 0%, #FF6B35 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem;">
                                 🐱
@@ -281,10 +283,18 @@ $allLostCats = getRecentLostCats(100);
             .bindPopup(`
                 <div style="min-width: 250px;">
                     <?php if ($cat['photo']): ?>
-                    <img src="uploads/cats/<?php echo htmlspecialchars($cat['photo']); ?>" 
-                         class="map-popup-image" alt="<?php echo htmlspecialchars($cat['cat_name']); ?>">
+                        <img src="uploads/cats/<?php echo htmlspecialchars($cat['photo']); ?>" 
+                            class="map-popup-image clickable-image"
+                            alt="<?php echo htmlspecialchars($cat['cat_name']); ?>"
+                            onclick="openImageModal(this.src)">
+                    <?php else: ?>
+                        <div class="map-popup-image" style="background:#eee;display:flex;align-items:center;justify-content:center;font-size:3rem;">
+                            🐱
+                        </div>
                     <?php endif; ?>
+
                     <h3 class="map-popup-title"><?php echo htmlspecialchars($cat['cat_name']); ?></h3>
+
                     <p class="map-popup-info"><strong>Breed:</strong> <?php echo htmlspecialchars($cat['breed'] ?: 'Mixed'); ?></p>
                     <p class="map-popup-info"><strong>Color:</strong> <?php echo htmlspecialchars($cat['color']); ?></p>
                     <p class="map-popup-info"><strong>Lost:</strong> <?php echo formatDate($cat['lost_date']); ?></p>
