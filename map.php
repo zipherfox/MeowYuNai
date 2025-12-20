@@ -194,7 +194,7 @@ if (isLoggedIn()) {
             
             let popupContent = `
                 <div style="min-width: 250px;">
-                    ${cat.photo ? `<img src="uploads/cats/${cat.photo}" class="map-popup-image" alt="${cat.cat_name}">` : ''}
+            
                     ${cat.photo ? `
                         <img 
                             src="uploads/cats/${cat.photo}" 
