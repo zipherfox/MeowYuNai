@@ -1,4 +1,4 @@
-<?php
+<?php<?php
 require_once 'includes/config.php';
 
 // Get all lost cats
@@ -259,5 +259,8 @@ function closeImageModal() {
 }
 </script>
 </script>
+</body>
+</html>
+
 </body>
 </html>
