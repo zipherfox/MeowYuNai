@@ -386,6 +386,9 @@ h3 { font-size: 1.8rem; }
     margin-bottom: 1.5rem;
     line-height: 1.6;
 }
+.clickable-image {
+    cursor: zoom-in;
+}
 
 /* Forms */
 .form-container {
