@@ -256,7 +256,9 @@ if ($action === 'edit' && $catId) {
                 <?php if ($editCat && $editCat['photo']): ?>
                     <div style="margin-bottom: 1rem;">
                         <img src="uploads/cats/<?php echo htmlspecialchars($editCat['photo']); ?>" 
-                             style="max-width: 200px; border-radius: 10px;">
+                            style="max-width: 200px; border-radius: 10px; cursor: zoom-in;"
+                            onclick="openImageModal(this.src)">
+
                     </div>
                 <?php endif; ?>
                 <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
@@ -295,7 +297,7 @@ if ($action === 'edit' && $catId) {
     </footer>
 <!-- Image Modal -->
 <div id="imageModal" class="modal" onclick="closeImageModal()">
-    <span class="modal-close" onclick="closeImageModal()">&times;</span>
+    <span class="modal-close" onclick="event.stopPropagation(); closeImageModal();">&times;</span>
     <img id="modalImage" 
      style="max-width:90%; max-height:90%; border-radius:20px;"
      onclick="event.stopPropagation();">
@@ -310,5 +312,7 @@ function openImageModal(src) {
 function closeImageModal() {
     document.getElementById('imageModal').classList.remove('active');
 }
+</script>
 </body>
 </html>
+
