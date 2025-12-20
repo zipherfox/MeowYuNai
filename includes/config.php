@@ -66,28 +66,35 @@ function calculateDistance($lat1, $lon1, $lat2, $lon2) {
     return $distance;
 }
 
-function uploadPhoto($file, $directory = 'uploads/cats/') {
+function uploadPhoto($file) {
+    // Absolute path to upload folder
+    $uploadDir = __DIR__ . '/../uploads/cats/';
+
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
     if (!isset($file['error']) || $file['error'] !== UPLOAD_ERR_OK) {
         return null;
     }
-    
+
     $allowed = ['jpg', 'jpeg', 'png', 'gif'];
-    $filename = $file['name'];
-    $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-    
+    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+
     if (!in_array($ext, $allowed)) {
         return null;
     }
-    
-    $newFilename = uniqid() . '_' . time() . '.' . $ext;
-    $destination = $directory . $newFilename;
-    
+
+    $newFilename = uniqid('cat_') . '_' . time() . '.' . $ext;
+    $destination = $uploadDir . $newFilename;
+
     if (move_uploaded_file($file['tmp_name'], $destination)) {
-        return $newFilename;
+        return $newFilename; 
     }
-    
+
     return null;
 }
+
 
 function formatDate($datetime) {
     return date('M d, Y h:i A', strtotime($datetime));
