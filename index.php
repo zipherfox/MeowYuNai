@@ -337,3 +337,7 @@ $allLostCats = getRecentLostCats(100);
     </script>
 </body>
 </html>
+
+    </script>
+</body>
+</html>
