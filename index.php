@@ -38,6 +38,20 @@ $allLostCats = getRecentLostCats(100);
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
+    <script>
+    window.openImageModal = function (src) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        modalImg.src = src;
+        modal.classList.add('active');
+    };
+
+    window.closeImageModal = function (event) {
+        if (event) event.stopPropagation();
+        document.getElementById('imageModal').classList.remove('active');
+    };
+    </script>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -335,9 +349,26 @@ $allLostCats = getRecentLostCats(100);
         }).addTo(map);
         <?php endif; ?>
     </script>
+<!-- Image Modal -->
+<div id="imageModal" class="modal" onclick="closeImageModal()">
+    <span class="modal-close" onclick="closeImageModal()">&times;</span>
+    <img id="modalImage" 
+     style="max-width:90%; max-height:90%; border-radius:20px;"
+     onclick="event.stopPropagation();">
+
+</div>
+<script>
+function openImageModal(src) {
+    document.getElementById('modalImage').src = src;
+    document.getElementById('imageModal').classList.add('active');
+}
+
+function closeImageModal() {
+    document.getElementById('imageModal').classList.remove('active');
+}
 </body>
 </html>
 
-    </script>
+
 </body>
 </html>
