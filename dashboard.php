@@ -232,6 +232,3 @@ function closeImageModal() {
 </body>
 </html>
 
-</script>
-</body>
-</html>
